@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    public Animator anim;
     public float speed;
     private float hsp;
     private float vsp;
-    public GameObject cursor;
-    public GameObject bullet;
+    private bool isRun;
+    public float runMultiplyer = 1.5f;
+  
 
-    public Transform firepoint;
-    public float bulletSpeed = 10f;
-
-    Vector2 lookDirection;
-    float lookAngle;
-
+   
 
     // Start is called before the first frame update
     void Start()
@@ -26,25 +23,33 @@ public class PlayerMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //animate player
+        if (hsp == 0 && vsp == 0)
+        {
+            anim.SetTrigger("idle");
+        } else if(hsp > 0) {
+            this.transform.localScale = new Vector3(1, 1, 1);
+            anim.SetTrigger("walk");
+        } else if (hsp < 1) {
+            this.transform.localScale = new Vector3(-1, 1, 1);
+            anim.SetTrigger("walk");
+        }
+        
         hsp = Input.GetAxisRaw("Horizontal");
         vsp = Input.GetAxisRaw("Vertical");
+        isRun = Input.GetKey(KeyCode.LeftShift);
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-           GameObject bulletClone = Instantiate(bullet, firepoint.position, firepoint.rotation);
-           bulletClone.GetComponent<Rigidbody2D>().AddForce(firepoint.right * bulletSpeed, ForceMode2D.Impulse);
-        }
+
+    
     }
 
     private void FixedUpdate() {
-
-        lookDirection = cursor.transform.position;
-        lookDirection = lookDirection - GetComponent<Rigidbody2D>().position;
-
-        lookAngle = Mathf.Atan2(lookDirection.y, lookDirection.x) * Mathf.Rad2Deg;
-
-        GetComponent<Rigidbody2D>().rotation = lookAngle;
-
-        GetComponent<Rigidbody2D>().velocity = new Vector2(hsp * speed, vsp * speed);
+        if (isRun)
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(hsp * speed * runMultiplyer, vsp * speed * runMultiplyer);
+        } else
+        {
+            GetComponent<Rigidbody2D>().velocity = new Vector2(hsp * speed, vsp * speed);
+        }
     }
 }
