@@ -7,6 +7,7 @@ public class studentRoam : MonoBehaviour
 
     public float enemySpeed;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,7 +17,12 @@ public class studentRoam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (gameObject.GetComponent<Rigidbody2D>().velocity.x > 0)
+        {
+            this.GetComponent<SpriteRenderer>().flipX = false;
+        } else {
+            this.GetComponent<SpriteRenderer>().flipX = true;
+        }
     }
 
     /*

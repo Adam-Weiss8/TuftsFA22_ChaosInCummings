@@ -8,6 +8,8 @@ public class keyPickup : MonoBehaviour
 {
     private bool playerInRange = false;
     public Text pickupPrompt;
+    public GameObject player;
+    
 
     private void Start()
     {
@@ -18,7 +20,7 @@ public class keyPickup : MonoBehaviour
     {
         if (playerInRange && Input.GetKeyDown(KeyCode.E))
         {
-            Destroy(gameObject);
+            pickupKey();
         }
     }
 
@@ -38,5 +40,11 @@ public class keyPickup : MonoBehaviour
             pickupPrompt.gameObject.SetActive(false);
             playerInRange = false;
         }
+    }
+
+    void pickupKey()
+    {
+        player.GetComponent<PlayerMove>().addKey();
+        Destroy(gameObject);
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -10,9 +11,14 @@ public class PlayerMove : MonoBehaviour
     private float vsp;
     private bool isRun;
     public float runMultiplyer = 1.5f;
-  
 
-   
+    //key ui
+    public Text numberOfKeys;
+    private int keyCount = 0;
+
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -51,5 +57,11 @@ public class PlayerMove : MonoBehaviour
         {
             GetComponent<Rigidbody2D>().velocity = new Vector2(hsp * speed, vsp * speed);
         }
+    }
+
+    public void addKey()
+    {
+        keyCount++;
+        numberOfKeys.text = keyCount.ToString();
     }
 }
