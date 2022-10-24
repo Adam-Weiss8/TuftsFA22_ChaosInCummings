@@ -9,7 +9,8 @@ public class keyPickup : MonoBehaviour
     private bool playerInRange = false;
     public Text pickupPrompt;
     public GameObject player;
-    
+    public GameObject keySFX;
+
 
     private void Start()
     {
@@ -18,7 +19,7 @@ public class keyPickup : MonoBehaviour
 
     private void Update()
     {
-        if (playerInRange && Input.GetKeyDown(KeyCode.E))
+        if (playerInRange /*&& Input.GetKeyDown(KeyCode.E)*/)
         {
             pickupKey();
         }
@@ -27,7 +28,7 @@ public class keyPickup : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player")){
-            pickupPrompt.gameObject.SetActive(true);
+            //pickupPrompt.gameObject.SetActive(true);
             playerInRange = true;
         }
 
@@ -37,13 +38,14 @@ public class keyPickup : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            pickupPrompt.gameObject.SetActive(false);
+            //pickupPrompt.gameObject.SetActive(false);
             playerInRange = false;
         }
     }
 
     void pickupKey()
     {
+        keySFX.GetComponent<AudioSource>().Play();
         player.GetComponent<PlayerMove>().addKey();
         Destroy(gameObject);
     }
