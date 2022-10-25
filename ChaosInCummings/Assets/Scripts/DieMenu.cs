@@ -6,13 +6,13 @@ using UnityEngine.SceneManagement;
 public class DieMenu : MonoBehaviour
 {
 
-    [SerializeField] GameObject dieMenu; 
+    public GameObject dieMenu; 
 
-    void Start()
+    public void begin()
     {
-        dieMenu.SetActive(true);
+        dieMenu.SetActive(false);
     }
-    
+
     public void playerDied()
     {
         Time.timeScale = 0f;

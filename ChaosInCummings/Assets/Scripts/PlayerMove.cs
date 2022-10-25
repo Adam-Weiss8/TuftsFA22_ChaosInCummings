@@ -61,4 +61,9 @@ public class PlayerMove : MonoBehaviour
         keyCount++;
         numberOfKeys.text = keyCount.ToString();
     }
+
+    public int getKeyCount()
+    {
+        return keyCount;
+    }
 }
