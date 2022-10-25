@@ -10,7 +10,7 @@ public class EndMenu : MonoBehaviour
 
     void Start()
     {
-        endMenu.SetActive(false);
+        endMenu.SetActive(true);
     }
     
     public void endGame()
