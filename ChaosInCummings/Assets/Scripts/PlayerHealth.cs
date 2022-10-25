@@ -9,12 +9,12 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 3;
     public int currentHealth;
     public HealthBar healthBar;
-    public Text gameOverText;
+    public Text youLost;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameOverText.gameObject.SetActive(false);
+        youLost.gameObject.SetActive(false);
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
     }
@@ -25,7 +25,7 @@ public class PlayerHealth : MonoBehaviour
         if(currentHealth <= 0)
         {
             Destroy(gameObject);
-            gameOverText.gameObject.SetActive(true);
+            youLost.gameObject.SetActive(true);
         }
         
     }
