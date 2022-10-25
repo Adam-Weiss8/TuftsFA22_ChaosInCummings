@@ -14,10 +14,7 @@ public class PlayerMove : MonoBehaviour
 
     //key ui
     public Text numberOfKeys;
-    private int keyCount = 0;
-
-
-
+    public int keyCount = 0; //changed to public (Minnie)
 
 
     // Start is called before the first frame update

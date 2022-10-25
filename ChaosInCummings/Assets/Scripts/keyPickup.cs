@@ -10,6 +10,9 @@ public class keyPickup : MonoBehaviour
     public Text pickupPrompt;
     public GameObject player;
     public GameObject keySFX;
+    
+    //Added by Minnie
+    //public GameHandler gameHandler;
 
 
     private void Start()
@@ -48,5 +51,7 @@ public class keyPickup : MonoBehaviour
         keySFX.GetComponent<AudioSource>().Play();
         player.GetComponent<PlayerMove>().addKey();
         Destroy(gameObject);
+        //gameHandler.updateKeys(); //Added by Minnie
+
     }
 }
